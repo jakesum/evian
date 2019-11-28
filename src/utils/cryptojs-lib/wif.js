@@ -55,3 +55,19 @@ export const getDogewif = privateKeyHex => {
     }}
   ).toWIF()
 }
+
+export const getSumwif = privateKeyHex => {
+  return ECPair.fromPrivateKey(
+    Buffer.from(privateKeyHex, 'hex'),
+    {network: {
+      messagePrefix: 'sum',
+      bip32: {
+        public: 0x########,  //Todo
+        private: 0x########, //
+      },
+      pubKeyHash: 0x3F,
+      scriptHash: 0x38,
+      wif: 0xBF
+    }}
+  ).toWIF()
+}
