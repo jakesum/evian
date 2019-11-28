@@ -15,6 +15,7 @@ import {
   getBitcoinCashAddress,
   getEthAddress,
   getLitecoinAddress,
+  getSumcoinAddress,
   getXRPAddress,
   getSegwitAddress,
   getBTGAddress,
@@ -26,6 +27,7 @@ import {
 import { decryptEpkVcode } from './utils/cryptojs-lib/bip38.js'
 import {
   getLitecoinWif,
+  getSumcoinWif,
   getDashwif,
   getDogewif
 } from './utils/cryptojs-lib/wif.js'
@@ -49,6 +51,7 @@ function App() {
   const [xrpAddress, setXrpAddress] = useState('')
   const [bitcoinCashAddress, setBitcoinCashAddress] = useState('')
   const [litecoinAddress, setLitecoinAddress] = useState('')
+  const [sumcoinAddress, setSumcoincoinAddress] = useState('')
   const [bitcoinSVAddress, setBitcoinSVAddress] = useState('')
   const [bitcoinGoldAddress, setBitcoinGoldAddress] = useState('')
   const [bitcoinDiamondAddress, setBitcoinDiamondAddress] = useState('')
@@ -73,6 +76,7 @@ function App() {
   const [xrpPrivateKey, setXrpPrivateKey] = useState('')
   const [bitcoinCashPrivateKeyWIF, setBitcoinCashPrivateKeyWIF] = useState('')
   const [litecoinPrivateKeyWIF, setLitecoinPrivateKeyWIF] = useState('')
+  const [sumcoinPrivateKeyWIF, setSumcoinPrivateKeyWIF] = useState('')
   const [bitcoinSVPrivateKeyWIF, setBitcoinSVPrivateKeyWIF] = useState('')
   const [bitcoinGoldPrivateKeyWIF, setBitcoinGoldPrivateKeyWIF] = useState('')
   const [bitcoinDiamondPrivateKeyWIF, setBitcoinDiamondPrivateKeyWIF] = useState('')
@@ -308,6 +312,17 @@ function App() {
       WIFKey: 'Private Key (WIF)',
     },
     {
+      currency: 'sum',
+      title: 'Sumcoin (SUM)',
+      addressKey: 'Address',
+      getAddressMethod: getSumcoinAddress,
+      addressInputValue: sumcoinAddress,
+      setAddressInputMethod: setSumcoinAddress,
+      privateKeyInputValue: sumcoinPrivateKeyWIF,
+      setPrivateKeyInputMethod: setSumcoinPrivateKeyWIF,
+      WIFKey: 'Private Key (WIF)',
+    },
+    {
       currency: 'btc',
       title: 'Bitcoin SV (BSV)',
       addressKey: 'Address',
@@ -447,6 +462,9 @@ function App() {
               break;
             case 'ltc':
               outputPrivateKey = getLitecoinWif(privateKeyHex)
+              break;
+              case 'sum':
+              outputPrivateKey = getSumcoinWif(privateKeyHex)
               break;
             default:
               break;
