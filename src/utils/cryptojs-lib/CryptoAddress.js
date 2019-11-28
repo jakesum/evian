@@ -45,6 +45,11 @@ export const getLitecoinAddress = publicKeyHex => {
   return getBitcoinSeriesAddress(publicKeyHex, pubKeyHash)
 }
 
+export const getSumcoinAddress = publicKeyHex => {
+  const pubKeyHash = 0x3F
+  return getBitcoinSeriesAddress(publicKeyHex, pubKeyHash)
+}
+
 export const getXRPAddress = publicKeyHex => {
   return deriveAddress(publicKeyHex)
 }
